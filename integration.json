@@ -1,46 +1,49 @@
 {
   "schemaVersion": 1,
-  "status": "ready",
-  "verification": "mock-only",
-  "releaseEligible": true,
-  "maintainer": "jannikco",
-  "license": "MIT",
-  "sourceRevision": "371e458e4ba7f9ee4d68fe9da3a083e023d2f925ee3f6c7a9cba6fffa4efe5d8",
-  "evidence": [
-    "Local compiler output and actual MCP tools/call contract tests"
-  ],
-  "provenance": [
-    "https://github.com/jannikco/graphql-to-mcp/blob/main/lib/compiler/index.mjs"
-  ],
   "id": "graphql-to-mcp",
   "kind": "import-example",
   "product": "pipmcp",
   "title": "GraphQL to MCP import starter",
-  "description": "Compile graphql definitions into executable local MCP tools without a PipMCP account.",
+  "description": "Import graphql APIs into private PipMCP with one API key, reviewed uploads and agent instructions.",
+  "status": "ready",
+  "verification": "mock-only",
+  "releaseEligible": true,
   "operationIds": [],
-  "importFormat": "graphql",
+  "maintainer": "jannikco",
+  "license": "MIT",
   "attributionSlug": "github-graphql-to-mcp",
+  "sourceRevision": "5d6a174e6be7048375329b83ac4a9ffb1fc4f9385d1471d0211e95f6f5ec232d",
   "qualityVersion": 2,
   "artifactType": "compiler",
+  "evidence": [
+    "Gateway HTTP transport fixtures",
+    "Generated stdio wrapper discovery/call fixtures"
+  ],
+  "provenance": [
+    "https://github.com/jannikco/graphql-to-mcp/blob/main/lib/compiler/index.mjs"
+  ],
   "utility": {
-    "problem": "Compile graphql definitions into executable local MCP tools without a PipMCP account.",
-    "output": "Executable local MCP connector definition"
+    "problem": "Import a reviewed graphql API definition into private PipMCP",
+    "output": "A private integration import receipt; publication and connection remain explicit"
   },
+  "executionAuthority": "pipmcp-gateway",
+  "version": "1.0.0",
+  "agentReady": true,
   "capabilityEvidence": {
     "local": {
       "level": "Tested",
       "operations": [
         {
-          "name": "graphql-to-mcp",
+          "name": "gateway_transport",
           "level": "Tested",
+          "method": "contract-fixture",
           "evidenceRefs": [
-            "Standalone functional API/compiler contract tests"
-          ],
-          "method": "contract-fixture"
+            "Generated gateway/stdio fixtures"
+          ]
         }
       ],
       "evidenceRefs": [
-        "Standalone functional API/compiler contract tests"
+        "Generated gateway/stdio fixtures"
       ],
       "mode": "local"
     },
@@ -51,79 +54,5 @@
       "mode": "managed"
     }
   },
-  "connector": {
-    "id": "graphql-api",
-    "name": "GraphQL API",
-    "version": "0.2.0",
-    "baseUrl": "https://example.com/graphql",
-    "auth": {
-      "type": "none"
-    },
-    "tools": [
-      {
-        "name": "query_product",
-        "description": "GraphQL query: product",
-        "method": "POST",
-        "path": "",
-        "readOnly": true,
-        "body": {
-          "query": "query PipMCP_product($id: ID!) { product(id: $id) { id title priceMinor } }"
-        },
-        "inputSchema": {
-          "type": "object",
-          "properties": {
-            "id": {
-              "type": "string"
-            }
-          },
-          "required": [
-            "id"
-          ],
-          "additionalProperties": false
-        },
-        "bindings": {
-          "path": [],
-          "query": {},
-          "body": {
-            "id": "variables.id"
-          }
-        },
-        "sampleArguments": {
-          "id": "example-id"
-        }
-      },
-      {
-        "name": "query_products",
-        "description": "GraphQL query: products",
-        "method": "POST",
-        "path": "",
-        "readOnly": true,
-        "body": {
-          "query": "query PipMCP_products($limit: Int) { products(limit: $limit) { id title priceMinor } }"
-        },
-        "inputSchema": {
-          "type": "object",
-          "properties": {
-            "limit": {
-              "type": "integer"
-            }
-          },
-          "required": [],
-          "additionalProperties": false
-        },
-        "bindings": {
-          "path": [],
-          "query": {},
-          "body": {
-            "limit": "variables.limit"
-          }
-        },
-        "sampleArguments": {}
-      }
-    ],
-    "workflow": "Run typed GraphQL root queries or explicitly approved mutations with your own API endpoint.",
-    "provenance": [
-      "User-supplied GraphQL schema"
-    ]
-  }
+  "importFormat": "graphql"
 }

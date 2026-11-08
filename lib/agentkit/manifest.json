@@ -1,0 +1,15 @@
+{
+  "schemaVersion": 1,
+  "version": "1.0.0",
+  "product": "pipmcp",
+  "credential": "PIPMCP_API_KEY",
+  "skills": [
+    {
+      "name": "pipmcp-graphql-to-mcp",
+      "description": "Import a reviewed graphql API definition into private PipMCP and connect its tools to AI agents."
+    }
+  ],
+  "files": {
+    "skills/pipmcp-graphql-to-mcp/SKILL.md": "b01282080bd6df32cb0cd008bee6fac2a847f6cfb6abdaa2604011249e50d5fe"
+  }
+}
